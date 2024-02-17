@@ -2,10 +2,6 @@ variable "kvm_subnet" {
   type    = string
   default = "172.16.0.0/24"
 }
-variable "kvm_subnet_prefix" {
-  type    = string
-  default = "172.16.0"
-}
 
 variable "network_name" {
   description = "A name to provide for the k8s cluster network"
