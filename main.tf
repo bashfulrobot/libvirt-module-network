@@ -47,6 +47,7 @@ variable "autostart_network" {
   default     = true
 }
 
+# My modules are designed for NAT or ROUTED
 variable "network_mode" {
   description = "The network mode for the k8s cluster network"
   type        = string
