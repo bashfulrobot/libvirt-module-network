@@ -79,13 +79,13 @@ resource "libvirt_network" "cluster_net" {
     enabled    = var.dns_enabled
     local_only = var.dns_local_only
   }
-  dynamic "routes" {
-  for_each = var.network_mode == "route" ? [1] : []
-  content {
-    cidr = var.kvm_subnet
-    gateway = "${var.kvm_subnet_prefix}.1"
-  }
-}
+#   dynamic "routes" {
+#   for_each = var.network_mode == "route" ? [1] : []
+#   content {
+#     cidr = var.kvm_subnet
+#     gateway = "${var.kvm_subnet_prefix}.1"
+#   }
+# }
 }
 
 ##### OUTPUTS #####
