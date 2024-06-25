@@ -16,6 +16,15 @@ variable "kvm_subnet" {
   type    = string
   default = "172.16.0.0/24"
 }
+variable "kvm_subnet_prefix" {
+  type    = string
+  default = "172.16.0"
+}
+
+variable "kvm_bridge" {
+  type    = string
+  default = "virbr10"
+}
 
 variable "network_name" {
   description = "A name to provide for the k8s cluster network"
@@ -70,6 +79,13 @@ resource "libvirt_network" "cluster_net" {
     enabled    = var.dns_enabled
     local_only = var.dns_local_only
   }
+  dynamic "routes" {
+  for_each = var.network_mode == "route" ? [1] : []
+  content {
+    cidr = var.kvm_subnet
+    gateway = "${var.kvm_subnet_prefix}.1"
+  }
+}
 }
 
 ##### OUTPUTS #####
